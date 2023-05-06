@@ -1,0 +1,104 @@
+/* General */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Header y footer */
+header {
+    min-height: 5vh;
+    background: linear-gradient(70deg, gray, black, gray) !important;
+}
+
+
+footer {
+    min-height: 5vh;
+    background: linear-gradient(70deg, gray, black, gray) !important;
+}
+.logo {
+    width: 100px !important;
+    object-fit: cover;
+}
+
+a {
+    font-size: medium !important;
+    font-weight: 600 !important;
+    color: rgb(208, 10, 122) !important;
+}
+
+
+.redes {
+    width: 30px;
+    height: 30px;
+}
+.text {
+    color: rgb(208, 10, 122);
+}
+body{
+    background-image: url(../images/fondo.jpg);
+}
+
+/* Main */
+
+main{ 
+    min-height: 90vh;
+}
+
+.carousel-item img {
+    width: 100% !important;
+    height: 400px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+.carousel{
+    position: relative !important;
+}
+.carousel h2 {
+    width: fit-content !important;
+    height: fit-content !important;
+    color: rgb(208, 10, 122) !important;
+    font-size: 3rem !important;
+    font-weight: 600 !important;
+    background-color: rgba(0, 0, 0, 0.063);
+}
+
+/* Contact */
+
+
+.Dat {
+    background-color: rgba(248, 248, 248, 0.872);
+    margin: 1rem;
+}
+
+
+input,
+textarea {
+    background-color: rgba(159, 29, 96, 0.549);
+}
+
+
+/* Stats */
+table,
+tr,
+th,
+td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    padding: .5rem;
+    background-color: rgba(255, 255, 255, 0.475);
+
+}
+
+
+caption {
+    background-color: rgba(255, 192, 203, 0.752) !important;
+    color: black;
+}
+.card-img-top {
+    height: 20vh;
+}
+
+
+
