@@ -68,17 +68,8 @@ main{
 
 .Dat {
     background-color: rgba(248, 248, 248, 0.872);
-    width: 15rem;
-    height: 25rem;
-    margin: 1rem;
-    border: 1px solid rgb(211, 215, 214);
-    border-radius: 5px;
-    margin-top: 2rem;
 }
 
-::placeholder {
-    line-height: 100px;
-}
 
 input,
 textarea {
