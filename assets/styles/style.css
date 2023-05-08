@@ -96,4 +96,8 @@ caption {
     color: black;
 }
 
+.card-img-top {
+    height: 25vh;
+}
+
 
