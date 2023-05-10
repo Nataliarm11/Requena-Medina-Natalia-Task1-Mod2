@@ -27,7 +27,7 @@ function filter (eventsDate, date) {
   return filtro
 }
 
-filter (data.events, data.currentDate );
+
 let filtro = filter(data.events, data.currentDate);
 
 
