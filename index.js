@@ -8,12 +8,12 @@ const cartas = document.getElementById ( "cards")
 const inputSearch = document.getElementById("search")
 
 
- //CHECBOX SOLO UNA CATEGORIA
+ //CHECBOX PARA NO REPETIR
 
  const category = data.events.map (events => events.category)
  const setCategory = new Set ( category ) 
  const arrayCategory = Array.from ( setCategory)
- console.log (arrayCategory)
+
 
 
  //CHECBOX CATEGORY 
@@ -28,7 +28,7 @@ const inputSearch = document.getElementById("search")
 
  const templateCheckbox = arrayCategory.reduce ( funcionReduce , '' )
 
- console.log ( templateCheckbox )
+ 
 
  //imprimir
  checkbox.innerHTML = ( templateCheckbox )
@@ -38,10 +38,8 @@ const inputSearch = document.getElementById("search")
  //para las cartas 
 
  
-
  function template ( lista ) {
     return lista.reduce( ( acc, act ) => {
-        console.log(act.category)
         return acc +=  `<article class="card col-6 col-md-5 col-lg-4 col-xl-2">
         <img src="${act.image}" class="card-img-top" alt="books">
         <div class="card-body">
@@ -67,41 +65,67 @@ cartas.innerHTML = template (data.events)
 
 //Checkbox cuando el usuario realiza un check
 
-checkbox.addEventListener('change', () => {
-    const checkboxChecked = Array.from (document.querySelectorAll( 'input[type="checkbox"]:checked')).map( check => check.value)
-    const eventosFiltrados = filtrarEventos ( data.events , checkboxChecked)
-    cartas.innerHTML= template (eventosFiltrados)
-})
+//search
 
-
-
-//funcion para filtrar checkbox
-
-function filtrarEventos ( events, category ) {
-    if (category.length == 0 ) {
-        return data.events
+ inputSearch.addEventListener ( 'input', () => {
+   const busqueda = filterTittle ( data.events, inputSearch.value)
+   const inputs = document.querySelectorAll("input[type='checkbox']");
+   const anyChecked = false
+   for (let i = 0; i < inputs.length; i++) {   
+    if(inputs[i].checked) {
+      const porCategory = filtrarCategory (busqueda, inputs[i].value)
+      cartas.innerHTML= template (porCategory , cartas)
+      anyChecked = true
     }
-    return events.filter( events => category.includes (events.category))
+  }   
+  if(anyChecked == false) {
+    cartas.innerHTML= template (busqueda , cartas)
+  }   
+ })
+
+let checkboxElems = document.querySelectorAll("input[type='checkbox']");
+
+for (let i = 0; i < checkboxElems.length; i++) {
+  checkboxElems[i].addEventListener("click", (e) => {
+    const busqueda = filterTittle ( data.events, inputSearch.value)
+    if (e.target.checked) {
+      const porCategory = filtrarCategory (busqueda, e.target.value)
+      
+      cartas.innerHTML= template (porCategory , cartas)
+    } else {
+      cartas.innerHTML= template (busqueda , cartas)
+    }
+  });
 }
 
+ function filtrarCategory ( filterData, search ) {
+      if (filterData.length == 0 ) {
+          return data.events
+      }
+      const filtered = filterData.filter((el) => el.category == search);
+      return filtered
+ }
 
-// search cuando el usuario escribe
-
-inputSearch.addEventListener("input", () =>{
-  // console.log('data events: ', data.events)
-  // console.log('titulo a buscar: ', inputSearch.value)
- let arrayFilter = filterTittle(data.events,  inputSearch.value)
-  cartas.innerHTML = template ( arrayFilter, cartas)
-})
+  function filterTittle(array, search) {
+   return array.filter(palabra => palabra.name.toLowerCase().includes(search.toLowerCase()));  
+  }
 
 
 
 
-// PARA FILTRAR POR TITULO : le llegan todos los titulos 
 
-function filterTittle(array, search) {
- return array.filter(val => val.name.toLowerCase().includes(search.toLowerCase()));  
-}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

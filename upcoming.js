@@ -1,26 +1,26 @@
 
-//ID DONDE DESEO COLOCAR EL CHEC Y CARTAS 
+// DE NUEVO
 const checkbox = document.getElementById("checkbox")
 console.log (document.getElementById("checkbox"))
 
-//CARTAS PASADAS
 
 const cartas = document.getElementById ( "cardsUpcoming")
 const todosEvents = data.events
 const eventosFuturos = todosEvents.filter ( events => events.date > data.currentDate)
 
 
-
-//SEARCH 
 const inputSearch = document.getElementById("search")
 
 
- // sacar solo las categorias y no repetir
+ //CHECBOX PARA NO REPETIR
 
  const category = eventosFuturos.map (events => events.category)
  const setCategory = new Set ( category ) 
  const arrayCategory = Array.from ( setCategory)
- console.log (arrayCategory)
+
+
+
+ //CHECBOX CATEGORY 
 
  const funcionReduce = ( acumulador, elementoActual, indice, array ) => {
     return acumulador += `<div class="form-check form-check-inline">
@@ -31,7 +31,8 @@ const inputSearch = document.getElementById("search")
 
 
  const templateCheckbox = arrayCategory.reduce ( funcionReduce , '' )
- console.log ( templateCheckbox )
+
+ 
 
  //imprimir
  checkbox.innerHTML = ( templateCheckbox )
@@ -41,10 +42,8 @@ const inputSearch = document.getElementById("search")
  //para las cartas 
 
  
-
  function template ( lista ) {
     return lista.reduce( ( acc, act ) => {
-        console.log(act.category)
         return acc +=  `<article class="card col-6 col-md-5 col-lg-4 col-xl-2">
         <img src="${act.image}" class="card-img-top" alt="books">
         <div class="card-body">
@@ -59,7 +58,7 @@ const inputSearch = document.getElementById("search")
           <a href="./details.html?id=${act._id}" class="card-link">See More</a>
         </div>
       </article>`
-    }, '' )
+    }, '' ) //empiza string vacio
 }
 
 cartas.innerHTML = template (eventosFuturos)
@@ -68,45 +67,52 @@ cartas.innerHTML = template (eventosFuturos)
 // PONER EN FUNCIONAMIENTO LOS CHECKBOX
 
 
+//Checkbox cuando el usuario realiza un check
 
-// search
+//search
 
-inputSearch.addEventListener("input", () =>{
-    console.log('data events: ', eventosFuturos)
-    console.log('titulo a buscar: ', inputSearch.value)
-   let arrayFilter = filterTittle(eventosFuturos,  inputSearch.value)
-    cartas.innerHTML = template (arrayFilter, cartas)
-  })
-
-// PARA FILTRAR POR TITULO
-
-function filterTittle(array, search) {
-    return array.filter(val => val.name.toLowerCase().includes(search.toLowerCase()));  
-}
-
-
-//Checkbox
-
-checkbox.addEventListener('change', () => {
-    const checkboxChecked = Array.from (document.querySelectorAll( 'input[type="checkbox"]:checked')).map( check => check.value)
-    const eventosFiltrados = filtrarEventos ( eventosFuturos , checkboxChecked)
-    cartas.innerHTML= template (eventosFiltrados)
-})
-
-
-
-function filtrarEventos ( events, category ) {
-    if (category.length == 0 ) {
-        return eventosFuturos
+ inputSearch.addEventListener ( 'input', () => {
+   const busqueda = filterTittle ( eventosFuturos, inputSearch.value)
+   const inputs = document.querySelectorAll("input[type='checkbox']");
+   const anyChecked = false
+   for (let i = 0; i < inputs.length; i++) {   
+    if(inputs[i].checked) {
+      const porCategory = filtrarCategory (busqueda, inputs[i].value)
+      cartas.innerHTML= template (porCategory , cartas)
+      anyChecked = true
     }
-    return events.filter( events => category.includes (events.category))
+  }   
+  if(anyChecked == false) {
+    cartas.innerHTML= template (busqueda , cartas)
+  }   
+ })
+
+let checkboxElems = document.querySelectorAll("input[type='checkbox']");
+
+for (let i = 0; i < checkboxElems.length; i++) {
+  checkboxElems[i].addEventListener("click", (e) => {
+    const busqueda = filterTittle ( eventosFuturos, inputSearch.value)
+    if (e.target.checked) {
+      const porCategory = filtrarCategory (busqueda, e.target.value)
+      
+      cartas.innerHTML= template (porCategory , cartas)
+    } else {
+      cartas.innerHTML= template (busqueda , cartas)
+    }
+  });
 }
 
+ function filtrarCategory ( filterData, search ) {
+      if (filterData.length == 0 ) {
+          return eventosFuturos
+      }
+      const filtered = filterData.filter((el) => el.category == search);
+      return filtered
+ }
 
-
-
-
-
+  function filterTittle(array, search) {
+   return array.filter(palabra => palabra.name.toLowerCase().includes(search.toLowerCase()));  
+  }
 
 
 
