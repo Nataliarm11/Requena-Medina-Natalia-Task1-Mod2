@@ -20,13 +20,14 @@ const todosEvents = data.events
 
 console.log (todosEvents)
 
-//con el params voy a todosEvents y busco uno y comparo el id del evento con el id que llego del params si es cierto, lo guarda en const
+//con el params voy a todosEvents y busco uno y comparo el id del evento con el id que llego del params si es cierto, lo guarda en const events
 
 const events = todosEvents.find ( events => events._id == idParam )
 
 console.log (events)
 
-//Estoy tomando el titulo del array para colocarlo en la pagina
+//CAMBIAR EL TITULO DE LA PAGINA WEB
+
 document.title = events.name 
 
 

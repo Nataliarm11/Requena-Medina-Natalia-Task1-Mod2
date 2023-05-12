@@ -1,20 +1,11 @@
 const checkbox = document.getElementById("checkbox")
-console.log (document.getElementById("checkbox"))
-
-
 const cartas = document.getElementById ( "cards")
-
-
 const inputSearch = document.getElementById("search")
 
-
  //CHECBOX PARA NO REPETIR
-
  const category = data.events.map (events => events.category)
  const setCategory = new Set ( category ) 
  const arrayCategory = Array.from ( setCategory)
-
-
 
  //CHECBOX CATEGORY 
 
@@ -24,20 +15,12 @@ const inputSearch = document.getElementById("search")
                             <label class="form-check-label" for="${elementoActual}-${indice}">${elementoActual}</label>
                             </div>`
   }
-
-
  const templateCheckbox = arrayCategory.reduce ( funcionReduce , '' )
-
- 
 
  //imprimir
  checkbox.innerHTML = ( templateCheckbox )
 
-
-
- //para las cartas 
-
- 
+ //para las cartas  
  function template ( lista ) {
     return lista.reduce( ( acc, act ) => {
         return acc +=  `<article class="card col-6 col-md-5 col-lg-4 col-xl-2">
@@ -60,10 +43,8 @@ const inputSearch = document.getElementById("search")
 cartas.innerHTML = template (data.events)
 
 
-// PONER EN FUNCIONAMIENTO LOS CHECKBOX
-
-
-//Checkbox cuando el usuario realiza un check
+// PONER EN FUNCIONAMIENTO LOS CHECKBOX Y EL SEARCH
+//CUANDO EL USUARIO REALIZA UN EVENTO
 
 //search
 
@@ -82,6 +63,8 @@ cartas.innerHTML = template (data.events)
     cartas.innerHTML= template (busqueda , cartas)
   }   
  })
+
+ 
 
 let checkboxElems = document.querySelectorAll("input[type='checkbox']");
 
