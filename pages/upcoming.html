@@ -23,7 +23,7 @@
           <div class="collapse navbar-collapse flex-grow-0" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link active d-flex justify-content-center" href="/index.html">Home</a>
-              <a class="nav-link active d-flex justify-content-center bg-light" href="#">Upcoming Events</a>
+              <a class="nav-link active d-flex justify-content-center bg-white rounded-pill" href="#">Upcoming Events</a>
               <a class="nav-link active d-flex justify-content-center" href="./pastEvents.html">Past Events</a>
               <a class="nav-link active d-flex justify-content-center" href="./contact.html">Contact</a>
               <a class="nav-link active d-flex justify-content-center" href="./stats.html">Stats</a>
@@ -65,28 +65,37 @@
 
       </section>
 
-      <div class="category p-2 bg-black d-flex flex-wrap justify-content-evenly gap-2 align-items-center text-white">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-            <label class="form-check-label" for="inlineCheckbox3">Costume Party</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
-            <label class="form-check-label" for="inlineCheckbox4">Music Concert</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7">
-            <label class="form-check-label" for="inlineCheckbox7">Let's go to the cinema</label>
-          </div>
+      <section id="checkboxSearch" class="bg-black text-white category p-2  d-flex flex-wrap justify-content-center gap-2 align-items-center justify-content-sm-center">
+        <fieldset id="checkbox" class="d-block">
+          <!-- <div class="category p-2 bg-black d-flex flex-wrap justify-content-evenly gap-2 align-items-center text-white">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+              <label class="form-check-label" for="inlineCheckbox1">Food Fair</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+              <label class="form-check-label" for="inlineCheckbox2">Museum</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+              <label class="form-check-label" for="inlineCheckbox5">Race</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+              <label class="form-check-label" for="inlineCheckbox6">Book Exchange</label>
+            </div> -->
+        </fieldset>
 
-        <nav class="navbar" data-bs-theme="dark">
-          <div class="container-fluid">
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-        </nav>
+        <fieldset id="search">
+            <div class="searchnav">
+              <div class=" search container-fluid">
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="text" id="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+        </fieldset>
+
       </div>
 
       <div class="mt-2 mb-2 cartas d-flex flex-wrap justify-content-center gap-3"  id="cardsUpcoming">
