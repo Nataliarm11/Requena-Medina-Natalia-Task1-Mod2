@@ -1,42 +1,114 @@
-let cartas = document.getElementById ( "cardsPast")
 
-function infoDeCartas(object){
-    return `<article class="card col-10 col-sm-7 col-md-5 col-lg-4 col-xl-2">
-    <img src=" ${object.image} " class="card-img-top"></img>
+//ID DONDE DESEO COLOCAR EL CHEC Y CARTAS 
+const checkbox = document.getElementById("checkbox")
+console.log (document.getElementById("checkbox"))
+
+//CARTAS PASADAS
+
+const cartas = document.getElementById ( "cardsPast")
+const todosEvents = data.events
+const eventosPasados = todosEvents.filter ( events => events.date < data.currentDate)
+
+
+
+//SEARCH 
+const inputSearch = document.getElementById("search")
+
+
+ // sacar solo las categorias y no repetir
+
+ const category = eventosPasados.map (events => events.category)
+ const setCategory = new Set ( category ) 
+ const arrayCategory = Array.from ( setCategory)
+ console.log (arrayCategory)
+
+ const funcionReduce = ( acumulador, elementoActual, indice, array ) => {
+    return acumulador += `<div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="${elementoActual}-${indice}" value="${elementoActual}">
+                            <label class="form-check-label" for="${elementoActual}-${indice}">${elementoActual}</label>
+                            </div>`
+  }
+
+
+ const templateCheckbox = arrayCategory.reduce ( funcionReduce , '' )
+ console.log ( templateCheckbox )
+
+ //imprimir
+ checkbox.innerHTML = ( templateCheckbox )
+
+
+
+ //para las cartas 
+
+ 
+
+ function template ( lista ) {
+    return lista.reduce( ( acc, act ) => {
+        console.log(act.category)
+        return acc +=  `<article class="card col-6 col-md-5 col-lg-4 col-xl-2">
+        <img src="${act.image}" class="card-img-top" alt="books">
         <div class="card-body">
-            <h5 class="card-title text-dark text-body-emphasis">${object.name} </h5>
-            <p class="card-text">date: ${object.date} </p>
+          <h5 class="card-title text-dark text-body-emphasis">${act.name}</h5>
+          <p class="card-text">date: ${act.date}</p>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">price: ${object.price} </li>
-            <li class="list-group-item">place: ${object.place} </li>
-            </ul>
-            <div class="card-body">
-                <a href="./details.html" class="card-link">See More</a>
-                </div>
-            </article>`
+          <li class="list-group-item">price: ${act.price}</li>
+          <li class="list-group-item">place: ${act.place}</li>
+        </ul>
+        <div class="card-body">
+          <a href="./details.html?id=${act._id}" class="card-link">See More</a>
+        </div>
+      </article>`
+    }, '' )
 }
 
-function filter (eventsDate, date) {
-  const filtro = [ ];
-  for (let elemento of eventsDate) {
-    if (elemento.date <= date) {
-      filtro.push(elemento)
+cartas.innerHTML = template (eventosPasados)
+
+
+// PONER EN FUNCIONAMIENTO LOS CHECKBOX
+
+
+
+// search
+
+inputSearch.addEventListener("input", () =>{
+    console.log('data events: ', eventosPasados)
+    console.log('titulo a buscar: ', inputSearch.value)
+   let arrayFilter = filterTittle(eventosPasados,  inputSearch.value)
+    cartas.innerHTML = template (arrayFilter, cartas)
+  })
+
+// PARA FILTRAR POR TITULO
+
+function filterTittle(array, search) {
+    return array.filter(val => val.name.toLowerCase().includes(search.toLowerCase()));  
+}
+
+
+//Checkbox
+
+checkbox.addEventListener('change', () => {
+    const checkboxChecked = Array.from (document.querySelectorAll( 'input[type="checkbox"]:checked')).map( check => check.value)
+    const eventosFiltrados = filtrarEventos ( eventosPasados , checkboxChecked)
+    cartas.innerHTML= template (eventosFiltrados)
+})
+
+
+
+function filtrarEventos ( events, category ) {
+    if (category.length == 0 ) {
+        return eventosPasados
     }
-  }
-  return filtro
+    return events.filter( events => category.includes (events.category))
 }
 
-filter (data.events, data.currentDate );
-let filtro = filter(data.events, data.currentDate);
 
 
-function verCartas (array, parte){
-    let template = " "
-    for (let element of array ){
-         template += infoDeCartas (element)
-    }
-    parte.innerHTML += template
-}
 
-verCartas (filtro, cartas)
+
+
+
+
+
+
+

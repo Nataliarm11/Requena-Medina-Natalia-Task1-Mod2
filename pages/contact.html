@@ -25,7 +25,7 @@
               <a class="nav-link active d-flex justify-content-center" href="/index.html">Home</a>
               <a class="nav-link active d-flex justify-content-center" href="./upcoming.html">Upcoming Events</a>
               <a class="nav-link active d-flex justify-content-center" href="./pastEvents.html">Past Events</a>
-              <a class="nav-link active d-flex justify-content-center bg-light" href="#">Contact</a>
+              <a class="nav-link active d-flex justify-content-center bg-white rounded-pill" href="#">Contact</a>
               <a class="nav-link active d-flex justify-content-center" href="./stats.html">Stats</a>
             </div>
           </div>
@@ -67,20 +67,22 @@
 
       <div class="encuest p-2">
         <form action="./show_data(1).html" method="get" class="form d-flex align-items-center flex-column justify-content-center p-2">
-            <fieldset class="Dat text-white mt-2 d-flex align-items-center justify-content-center flex-column col-10 p-2" >
+            <fieldset class="Dat text-white mt-2 d-flex align-items-center justify-content-center flex-column col-6 p-2" >
 
-                <legend class="legend text-center text-black col-8">Information</legend>
+                <legend class="legend text-center text-black  col-8"><h3>INFORMATION</h3></legend>
                 
-                <label for="fullname" class="name text-black col-8 ">Name:</label>
+                <label for="fullname" class="name text-black col-8 "><h5>Name:</h5></label>
                 <input type="text" id="fullname" name="name" placeholder="name" class="name col-8">
 
-                <label for="eMail" class="email text-black col-8">Email:</label>
+                <label for="eMail" class="email text-black col-8"><h5>Email:</h5></label>
                 <input type="email" name="email" id="eMail" placeholder="email" class="em col-8">
 
-                <label for="message" class="msg text-black col-8">Message:</label>
+                <label for="message" class="msg text-black col-8"><h5>Message:</h5></label>
                 <textarea name="coment" id="message" cols="20" rows="6" placeholder="Message" class="messag col-8"></textarea>
+
+                <input class="submit p-1" type="submit" value="submit">
             </fieldset>
-            <input type="submit" value="submit">
+            
         </form>
       </div>
 
