@@ -6,12 +6,17 @@ const cartas = document.getElementById ( "cards")
 
 
 const inputSearch = document.getElementById("search")
- // sacar solo las categorias y no repetir
+
+
+ //CHECBOX SOLO UNA CATEGORIA
 
  const category = data.events.map (events => events.category)
  const setCategory = new Set ( category ) 
  const arrayCategory = Array.from ( setCategory)
  console.log (arrayCategory)
+
+
+ //CHECBOX CATEGORY 
 
  const funcionReduce = ( acumulador, elementoActual, indice, array ) => {
     return acumulador += `<div class="form-check form-check-inline">
@@ -22,6 +27,7 @@ const inputSearch = document.getElementById("search")
 
 
  const templateCheckbox = arrayCategory.reduce ( funcionReduce , '' )
+
  console.log ( templateCheckbox )
 
  //imprimir
@@ -50,33 +56,13 @@ const inputSearch = document.getElementById("search")
           <a href="./pages/details.html?id=${act._id}" class="card-link">See More</a>
         </div>
       </article>`
-    }, '' )
+    }, '' ) //empiza string vacio
 }
 
 cartas.innerHTML = template (data.events)
 
 
 // PONER EN FUNCIONAMIENTO LOS CHECKBOX
-
-
-
-// search cuando el usuario escribe
-
- inputSearch.addEventListener("input", () =>{
-     // console.log('data events: ', data.events)
-     // console.log('titulo a buscar: ', inputSearch.value)
-    let arrayFilter = filterTittle(data.events,  inputSearch.value)
-     cartas.innerHTML = template (arrayFilter, cartas)
-   })
-
-
-
-
-// PARA FILTRAR POR TITULO : le llegan todos los titulos 
-
-function filterTittle(array, search) {
-    return array.filter(val => val.name.toLowerCase().includes(search.toLowerCase()));  
-}
 
 
 //Checkbox cuando el usuario realiza un check
@@ -97,6 +83,26 @@ function filtrarEventos ( events, category ) {
     }
     return events.filter( events => category.includes (events.category))
 }
+
+
+// search cuando el usuario escribe
+
+inputSearch.addEventListener("input", () =>{
+  // console.log('data events: ', data.events)
+  // console.log('titulo a buscar: ', inputSearch.value)
+ let arrayFilter = filterTittle(data.events,  inputSearch.value)
+  cartas.innerHTML = template ( arrayFilter, cartas)
+})
+
+
+
+
+// PARA FILTRAR POR TITULO : le llegan todos los titulos 
+
+function filterTittle(array, search) {
+ return array.filter(val => val.name.toLowerCase().includes(search.toLowerCase()));  
+}
+
 
 
 

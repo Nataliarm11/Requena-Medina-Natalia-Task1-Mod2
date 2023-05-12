@@ -1,5 +1,4 @@
 
-
 //ID DONDE DESEO COLOCAR EL CHEC Y CARTAS 
 const checkbox = document.getElementById("checkbox")
 console.log (document.getElementById("checkbox"))
@@ -102,6 +101,13 @@ function filtrarEventos ( events, category ) {
     }
     return events.filter( events => category.includes (events.category))
 }
+
+
+
+
+
+
+
 
 
 
